@@ -49,3 +49,9 @@ st.write("""
 - 💊 OTC benefit may cover Ibuprofen – check plan.
 - 📸 Radiology still has 4 services left – use if knee worsens.
 """)
+st.header("📁 Upload Your EOB or Plan Document")
+uploaded_file = st.file_uploader("Choose a file (PDF, CSV, or TXT)", type=["pdf", "csv", "txt"])
+
+if uploaded_file:
+    st.success(f"Uploaded: {uploaded_file.name}")
+    st.write("This is where your file will be processed in the next version.")
