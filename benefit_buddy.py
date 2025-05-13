@@ -55,3 +55,13 @@ uploaded_file = st.file_uploader("Choose a file (PDF, CSV, or TXT)", type=["pdf"
 if uploaded_file:
     st.success(f"Uploaded: {uploaded_file.name}")
     st.write("This is where your file will be processed in the next version.")
+import fitz  # PyMuPDF
+
+if uploaded_file and uploaded_file.type == "application/pdf":
+    st.subheader("📄 PDF Text Extracted:")
+    # Read the PDF content
+    with fitz.open(stream=uploaded_file.read(), filetype="pdf") as doc:
+        text = ""
+        for page in doc:
+            text += page.get_text()
+        st.text_area("PDF Contents", text, height=300)
